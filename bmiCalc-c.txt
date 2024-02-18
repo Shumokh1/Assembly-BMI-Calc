@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include <math.h>
+
+extern char message(); 
+extern double inPound();
+extern double BMI();
+extern double inInch();
+
+char message_c() {
+
+    message();   
+    printf("\n Knowing your BMI is a good way to gauge whether your weight \n is in healthy proportion to your height. It is important to \n know about your BMI because it can help you to determine any \n health risks you may face if it's outside of the healthy range.");           
+             
+}  
+
+double inPound_c() {
+    double x = 2.20462262185, weight, poundResult, val;
+    
+    printf("\n \n Enter your weight in kg: ");
+    scanf("%lf",&weight);
+    poundResult = x * weight;
+    val = inPound(poundResult);
+    printf("%lf",val);
+}
+
+double inInch_c() {
+    double x3 = 2.54, inch, inchResult, val; 
+    
+    printf("\n \nEnter youe heigh in CM: "); 
+    scanf("%lf",&inch); 
+    inchResult = inch / x3; 
+    val = inInch(inchResult);
+    printf("%lf",val); 
+}
+
+
+double BMI_c() {
+    double x2 = 703, weight_lb, height_CM, bmiResult, H_bmi, W_bmi, val;
+    
+    printf("\n \nEnter your weight in Pound: ");
+    scanf("%lf",&weight_lb);
+    
+    printf("Enter your height in Inches: ");
+    scanf("%lf",&height_CM);
+    
+    H_bmi = (height_CM * height_CM);
+    W_bmi = weight_lb  * x2;
+    bmiResult = W_bmi / H_bmi;
+    val = BMI(bmiResult);         
+    printf("%lf",val);
+    printf("\n---------------------------------------------------------------\n");
+}
+
+double main(int argc, char *argv[]) {
+     message_c();
+    inPound_c();
+    inInch_c();
+    BMI_c();
+    
+  return 0;
+}
+//nasm -f elf64 bmiCalc.asm  -o bmiCalc.o

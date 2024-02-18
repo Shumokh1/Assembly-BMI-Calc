@@ -1,0 +1,82 @@
+; SECTION .DATA
+
+	msg:    db'------------------Welcome to our BMI calculator!----------------',10
+	msgLen: equ $-msg
+
+	msg2:    db'Your weight in pounds: ',10
+	msg2Len: equ $-msg2
+	
+	msg3:   db'Your heigh in Inches: ',10
+	msg3Len: equ $-msg3
+	
+	msg4:   db'Your BMI is: ',10
+	msg4Len: equ $-msg4
+	
+
+
+; SECTION .TEXT
+
+GLOBAL message
+message:
+
+	mov rax, 1
+	mov rdi,1
+	
+	mov rsi, msg
+	mov rdx, msgLen
+	syscall
+	
+	mov rax, 60
+	xor rdi, rdi
+
+	ret
+
+
+GLOBAL inPound
+inPound:
+	mov  rax, rdi
+	push rax
+
+	mov eax, 4
+	mov ebx, 1
+	mov ecx, msg2
+	mov edx, msg2Len
+	
+	int 80h
+
+	pop  rax
+	ret
+	
+	
+GLOBAL inInch
+inInch:
+	mov  rax, rdi
+	push rax
+	
+	mov eax, 4
+	mov ebx, 1
+	mov ecx, msg3
+	mov edx, msg3Len
+	
+	int 80h
+
+	pop  rax
+	ret
+	
+
+Global BMI
+BMI:
+	mov  rax, rdi
+	push rax
+	
+	mov eax, 4
+	mov ebx, 1
+	mov ecx, msg4
+	mov edx, msg4Len
+	
+	
+	int 80h
+
+	pop  rax
+	ret
+;nasm -f elf64 bmiCalc.asm  -o bmiCalc.o
